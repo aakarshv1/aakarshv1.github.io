@@ -1995,9 +1995,10 @@ input, select, textarea {
 
 		.features section {
 			padding: 3.5em 3em 1em 7em ;
-			width: 50%;
+			width: 100%;
 			border-top: solid 1px rgba(255, 255, 255, 0.15);
 			position: relative;
+			height: 500px;
 		}
 
 			.features section:nth-child(-n + 2) {
@@ -2185,6 +2186,8 @@ input, select, textarea {
 					border-top-width: 1px !important;
 					border-left-width: 0 !important;
 					width: 100%;
+					height: 400px;
+					position: relative;
 				}
 
 					.features section:first-child {
@@ -2196,12 +2199,12 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			.features section {
-				padding: 2.5em 1.5em 0.1em 5.5em ;
+				padding: 0.5em 1.5em 0.1em 5.5em ;
 			}
 
 				.features section .icon {
-					left: 1.5em;
-					top: 2em;
+					left: 0.5em;
+					top: 1em;
 				}
 
 		}

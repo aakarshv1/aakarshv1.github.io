@@ -23,8 +23,8 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">Who we are</a></li>
-							<li><a href="#two">What we do</a></li>
+							<li><a href="#one">About Me</a></li>
+							<li><a href="#two">Projects</a></li>
 							<li><a href="#three">Get in touch</a></li>
 						</ul>
 					</nav>
@@ -86,27 +86,201 @@
 					</section>
 
 				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
+					<section id="two" class="wrapper style3 fade-up" height: 500px>
 						<div class="inner">
-							<h2>What we do</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<h2>Projects</h2>
+							<p>Here are embeddings of some of my favorite simple personal projects. Check out my GitHub for more!</p>
 							<div class="features">
+									
+								  
 								<section>
-									<span class="icon solid major fa-code"></span>
-									<h3>Lorem ipsum amet</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<span class="icon solid major fa-pie"></span>
+									<h3>Pi Approximation by Monte Carlo Simulation with Visualization
+									</h3>
+									<style>
+										#myAnimation {
+											width: 50px;
+											height: 50px;
+											position: absolute;
+											background-color: white;
+										  }
+										/* .container {
+										  width: 400px;
+										  height: 400px;
+										  position: relative;
+										  border: 1px solid black;
+										} */
+
+										#piText {
+											position: absolute;
+											top: 50%;
+											left: 60%;
+										}
+									
+										#circle {
+										  width: 250px;
+										  height: 250px;
+										  border-radius: 50%;
+										  border: 1px solid white;
+										  position: absolute;
+										  left: 15%;
+										  top: 30%;
+										  background-color: transparent;
+										}
+									
+										#square {
+										  width: 250px;
+										  height: 250px;
+										  position: relative;
+										  border: 1px solid white;
+										  position: absolute;
+										  left: 15%;
+										  top: 30%;
+										  background-color: transparent;
+										}
+
+										#myCanvas {
+											left: 15%;
+											top: 30%;
+											position: absolute;
+										}
+
+										#simButt {
+											position: absolute;
+											top: 75%;
+											left: 75%;
+										}
+									
+										/* .square:before {
+										  content: "";
+										  display: block;
+										  width: 100%;
+										  height: 100%;
+										  position: absolute;
+										  background-color: lightblue;
+										} */
+									  </style>
+									
+										<div id ="circle"></div>
+										<div id="square"></div>
+										<canvas id="myCanvas" width="250" height="250"></canvas>
+
+										<script>
+
+										// Get the canvas element
+										const canvas = document.getElementById('myCanvas');
+										const ctx = canvas.getContext('2d');
+
+										// Square properties
+										const squareSize = 250;
+										const squareCenterX = squareSize / 2;
+										const squareCenterY = squareSize / 2;
+										const squareRadius = squareSize / 2;
+
+										// Circle properties
+										const circleRadius = squareRadius;
+
+										// Counters for dots inside and outside the circle
+										let dotsInsideCircle = 0;
+										let dotsOutsideCircle = 0;
+
+										function drawDot(x, y, color) {
+											// Draw a dot at the specified coordinates with the given color
+											ctx.fillStyle = color;
+											ctx.beginPath();
+											ctx.arc(x, y, 1, 0, 2 * Math.PI);
+											ctx.fill();
+										}
+
+										function randomizeDot() {
+											// Generate random coordinates within the square
+											const x = (Math.random() * squareSize);
+											const y = (Math.random() * squareSize);
+											console.log(`x: ${x}`);
+
+											// Calculate the distance from the dot to the center of the square
+											const distance = Math.sqrt(Math.pow(x - squareCenterX, 2) + Math.pow(y - squareCenterY, 2));
+
+											// Check if the dot falls within the circle
+											if (distance <= circleRadius) {
+												drawDot(x, y, 'blue');
+												dotsInsideCircle++;
+											} else {
+												drawDot(x, y, 'yellow');
+												dotsOutsideCircle++;
+											}
+										}
+
+										function drawRandomDots(totalDots, delay) {
+										let count = 0;
+
+										function drawDotWithDelay() {
+											randomizeDot();
+											count++;
+
+											if (count < totalDots) {
+												setTimeout(drawDotWithDelay, delay);
+											} else {
+												console.log(`Dots inside circle: ${dotsInsideCircle}`);
+												console.log(`Dots outside circle: ${dotsOutsideCircle}`);
+												const pi = 4 * (dotsInsideCircle / (dotsInsideCircle + dotsOutsideCircle));
+												document.getElementById("pi").textContent = pi;
+											}
+										}
+
+											drawDotWithDelay();
+										}
+
+										// Start drawing 1000 dots with a delay of 100 milliseconds between each dot
+										//drawRandomDots(1000, 100);
+
+									</script>
+										
+									  
+									  <p>
+									  <button 
+									  	id="simButt" onclick="drawRandomDots(1000, 10)">Simulate
+										</button> 
+									  </p>
+									  
+									 
+									  <!-- <div id ="myAnimation"></div> -->
+									  
+									  
+
+									  
+									  
+									  <!-- <script>
+									  var id = null;
+									  function myMove() {
+										var elem = document.getElementById("myAnimation");   
+										var pos = 0;
+										clearInterval(id);
+										id = setInterval(frame, 10);
+										function frame() {
+										  if (pos == 350) {
+											clearInterval(id);
+										  } else {
+											pos++; 
+											elem.style.top = pos + 'px'; 
+											//elem.style.left = pos + 'px'; 
+										  }
+										}
+									  }
+									</script> -->
+									<p id="piText">&pi;: <span id="pi"></span></p>
 								</section>
-								<section>
+								<!-- <section>
 									<span class="icon solid major fa-lock"></span>
 									<h3>Aliquam sed nullam</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
+								</section> -->
+								<!-- <section>
 									<span class="icon solid major fa-cog"></span>
 									<h3>Sed erat ullam corper</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
+								</section> -->
+								<!-- <section>
 									<span class="icon solid major fa-desktop"></span>
 									<h3>Veroeros quis lorem</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
@@ -120,7 +294,7 @@
 									<span class="icon major fa-gem"></span>
 									<h3>Aliquam urna dapibus</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
+								</section> -->
 							</div>
 							<ul class="actions">
 								<li><a href="generic.html" class="button">Learn more</a></li>
