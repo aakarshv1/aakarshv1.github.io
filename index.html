@@ -89,13 +89,13 @@
 					<section id="two" class="wrapper style3 fade-up" height: 500px>
 						<div class="inner">
 							<h2>Projects</h2>
-							<p>Here are embeddings of some of my favorite simple personal projects. Check out my GitHub for more!</p>
+							<p>Here are embeddings of some of my favorite personal projects. Check out my GitHub for more!</p>
 							<div class="features">
 									
 								  
 								<section>
-									<span class="icon solid major fa-pie"></span>
-									<h3>Pi Approximation by Monte Carlo Simulation with Visualization
+									<span class="icon solid major fa-pizza-slice"></span>
+									<h3>Pi Approximation via Monte Carlo Simulation with Visualization
 									</h3>
 									<style>
 										#myAnimation {
@@ -114,7 +114,39 @@
 										#piText {
 											position: absolute;
 											top: 50%;
-											left: 60%;
+											left: 42%;
+										}
+
+										#trialInput {
+											position: absolute;
+											top: 35%;
+											left: 75%;
+											transform: translateX(-50%);
+											background-color: transparent;
+											border: 0.2px solid white;
+										}
+
+										#errorMessage1 {
+											position: absolute;
+											top: 42%;
+											left: 75%;
+											transform: translateX(-50%);
+										}
+
+										#errorMessage2 {
+											position: absolute;
+											top: 62%;
+											left: 75%;
+											transform: translateX(-50%);
+										}
+
+										#simTimeInput {
+											position: absolute;
+											top: 55%;
+											left: 75%;
+											transform: translateX(-50%);
+											background-color: transparent;
+											border: 0.2px solid white;
 										}
 									
 										#circle {
@@ -147,9 +179,26 @@
 
 										#simButt {
 											position: absolute;
-											top: 75%;
+											top: 60%;
 											left: 75%;
+											transform: translateX(-50%);
 										}
+
+										#graphOpt {
+											position: absolute;
+											top: 69%;
+											left: 75%;
+											transform: translateX(-50%);
+										}
+
+										#graphLabel {
+											position: absolute;
+											top: 73%;
+											left: 75%;
+											transform: translateX(-50%);
+										}
+
+
 									
 										/* .square:before {
 										  content: "";
@@ -164,12 +213,20 @@
 										<div id ="circle"></div>
 										<div id="square"></div>
 										<canvas id="myCanvas" width="250" height="250"></canvas>
+										<input type="number" id="trialInput" placeholder="Number of Trials" >
+										<input type="radio" id="graphOpt" name="group-name" value="option-value">
+											<label for="graphOpt" id="graphLabel">Generate Graph</label>
+										
 
+										<!-- <input type="number" id="simTimeInput" placeholder="Simulation Time (sec)" > -->
+										<p id="errorMessage1" style="color: red; display: none;">Please enter number of trials</p>
+										<p id="errorMessage2" style="color: red; display: none;">Please enter simulation time</p>
 										<script>
 
 										// Get the canvas element
 										const canvas = document.getElementById('myCanvas');
 										const ctx = canvas.getContext('2d');
+										
 
 										// Square properties
 										const squareSize = 250;
@@ -211,21 +268,41 @@
 											}
 										}
 
-										function drawRandomDots(totalDots, delay) {
+										function drawRandomDots(delay) {
+											
+										ctx.clearRect(0, 0, canvas.width, canvas.height);
 										let count = 0;
+										var numTrials = document.getElementById("trialInput").value;
+										//var simTime = document.getElementById("simTimeInput").value;
+										
+										 if (numTrials == "") {
+										 	document.getElementById("errorMessage1").style.display = "block";
+											 //console.log(`true`)
+										 	} else {
+										 	document.getElementById("errorMessage1").style.display = "none";}
+
+											// if (simTime == "") {
+										 	// document.getElementById("errorMessage2").style.display = "block";
+											//  //console.log(`true`)
+										 	// } else {
+										 	// document.getElementById("errorMessage2").style.display = "none";}
 
 										function drawDotWithDelay() {
-											randomizeDot();
-											count++;
+											
 
-											if (count < totalDots) {
-												setTimeout(drawDotWithDelay, delay);
-											} else {
+											while (count < numTrials) {
+												//var delay = 1000 * (simTime / numTrials);
+												console.log(`num trials: ${numTrials}`);
+												//console.log(`sim Time: ${simTime}`);
+												console.log(`delay: ${delay}`);
+												randomizeDot();
+												count++;
+											} 
 												console.log(`Dots inside circle: ${dotsInsideCircle}`);
 												console.log(`Dots outside circle: ${dotsOutsideCircle}`);
 												const pi = 4 * (dotsInsideCircle / (dotsInsideCircle + dotsOutsideCircle));
 												document.getElementById("pi").textContent = pi;
-											}
+											
 										}
 
 											drawDotWithDelay();
@@ -235,11 +312,13 @@
 										//drawRandomDots(1000, 100);
 
 									</script>
+
+
 										
 									  
 									  <p>
 									  <button 
-									  	id="simButt" onclick="drawRandomDots(1000, 10)">Simulate
+									  	id="simButt" onclick="drawRandomDots(1)">Simulate
 										</button> 
 									  </p>
 									  
@@ -268,7 +347,8 @@
 										}
 									  }
 									</script> -->
-									<p id="piText">&pi;: <span id="pi"></span></p>
+									<h3 id="piText">&pi;: <span id="pi"></span></h3>
+									
 								</section>
 								<!-- <section>
 									<span class="icon solid major fa-lock"></span>
